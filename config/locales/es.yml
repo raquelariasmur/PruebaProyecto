@@ -1,0 +1,180 @@
+es:
+  application:
+    new: Nuevo %{model}
+    edit_model: Editar %{model}
+    edit: Editar
+    back: Atras
+    search: Buscar
+    save: Guardar
+    saving: Guardando...
+    delete: Eliminar
+    create: Crear
+    select: Seleccione
+    want_to_delete: Desea eliminar este %{model}
+    was_destroyed: El %{model} ha sido eliminado exitosamente.
+    was_created: El %{model} ha sido creado exitosamente.
+    was_updated: El %{model} ha sido actualizado exitosamente.
+    accept: Aceptar
+    reject: Cancelar
+    can_not_be_saved: "Este %{model} no puede ser guardado por :"
+    enabled: Habilitar %{model}
+    disabled: Deshabilitar %{model}
+    error: error
+    errors: errores
+    minutes: min
+    filter_by_name: Filtrar por nombre
+    filter_by_state: Filtrar por estado
+    filter_by_date: Filtrar por fecha
+    log_out: Cerrar sesión
+    sign_in: Iniciar sesión
+    no_signed_in: Debes iniciar sesión
+    must_be_admin: Debes ser administrador
+    bad_sign_in: Nombre de usuario o contraseña incorrecta
+  activerecord:
+    modules:
+      dashboard:
+        management: Administración
+      signin:
+        management: Inicio de Sesión
+      users:
+        one: usuario
+        other: usuarios
+        first_upper_others: Usuarios
+      dishes:
+        one: plato
+        other: platos
+        first_upper_others: Platos
+      clients:
+        one: cliente
+        other: clientes
+        first_upper_others: Clientes
+      order_states:
+        one: estado de pedido
+        other: estados de pedido
+        first_upper_others: Estados de pedido
+      orders:
+        one: pedido
+        other: pedidos
+        first_upper_others: Pedidos
+    attributes:
+      orders:
+        one: pedido
+        other: pedidos
+        first_upper_others: Pedidos
+    attributes: 
+      user:
+        username: Nombre de usuario
+        password: Contraseña
+        password_confirmation: Confirmación de contraseña
+        usertype: Tipo de usuario
+        usertypes:
+          administrator: Administrador
+          kitchener: Cocinero
+      dish:
+        name: Nombre
+        description: Descripción
+        price: Precio
+        photography: Fotografía
+        state_title: Estado
+        state:
+          true: Activo
+          false: Inactivo
+      client:
+        name: Nombre
+        firstname: Nombre
+        lastname: Apellido
+        password_digest: Contraseña
+        password: Contraseña
+        password_confirmation: confirmación de contraseña
+        email: Correo electrónico
+        direction: Dirección
+        enabled: Habilitado
+        enable:
+          :true: "Si"
+          :false: "No"
+      order_state:
+        name: Nombre
+        names:
+          on_time: A tiempo
+          over_time: Sobre tiempo
+          delayed: Demorado
+          canceled: Anulado
+          delivered: Entregado
+        time_in_minutes: Tiempo en minutos
+      order:
+        total: Total
+        subtotal: Subtotal
+        order_state_title: Estado de la orden
+        client: Cliente
+        entry_date: Fecha de entrada
+
+    errors:
+      models:
+        user:
+          attributes:
+            username:
+              blank: no puede estar vacío
+              too_long: debe tener menos de 10 caracteres
+              taken: ya existe
+            usertype:  
+              blank: no puede estar vacío
+              too_long: debe tener menos de 40 caracteres
+            password:
+              blank: no puede estar vacío
+              too_short: debe tener más de 4 caracteres
+              too_long: debe tener menos de 15 caracteres
+            password_confirmation:
+              confirmation: no coincide con la contraseña
+        dish:
+          attributes:
+            name:
+              blank: no puede estar vacío
+              too_long: debe tener menos de 20 caracteres
+            description:
+              blank: no puede estar vacío
+              too_long: debe tener menos de 200 caracteres
+            price:
+              blank: no puede estar vacío
+            photography:
+              blank: debe escoger una imagen
+        client:
+          attributes:
+            firstname:
+              blank: no puede estar vacío
+              too_short: debe tener al menos 2 caracteres
+              too_long: debe tener máximo 40 caracteres
+            lastname:
+              blank: no puede estar vacío
+              too_short: debe tener al menos 2 caracteres
+              too_long: debe tener máximo 40 caracteres
+            password:
+              blank: no puede estar vacío
+              too_short: debe tener al menos 4 caracteres
+              too_long: debe tener máximo 40 caracteres
+            password_confirmation:
+              confirmation: no coincide
+            direction:
+              blank: no puede estar vacío
+              too_short:  debe tener al menos 10 caracteres
+              too_long: debe tener máximo 200 caracteres
+            email:
+              taken: ya existe
+              blank: no puede estar vacío
+              invalid: debe de ser un email válido, ejem. example@ejem.com
+        order_state:
+          attributes:
+            name:
+              blank: no puede estar vacío
+            time_in_minutes:
+              blank: no puede estar vacío
+        order:
+          attributes:
+            total:
+              blank: no puede estar vacío
+            subtotal:
+              blank: no puede estar vacío
+            order_state:
+              required: no puede estar vacío
+            client:
+              required: no puede estar vacío
+

@@ -1,0 +1,24 @@
+= form_for @order_state, validate: true do |f|
+  - if  @order_state.errors.any?
+    %div{:style => 'color: red'}
+      %h2
+        = t('application.can_not_be_saved', model: t('activerecord.modules.order_states.one'))
+        - if @order_state.errors.count == 1 
+          = "#{@order_state.errors.count} #{t('application.error')}"
+        - else 
+          = "#{@order_state.errors.count} #{t('application.errors')}"
+      %ul
+        -   @order_state.errors.each do |error|
+          %li= error.full_message
+  .form-group.ml-4.mr-4
+    = f.label t('activerecord.attributes.order_state.name'), class: "form-label required", style: "color: white"
+    %p.card-text{style: "color: white;"} &nbsp #{t("activerecord.attributes.order_state.names.#{@order_state.name}")}
+  .form-group.ml-4.mr-4
+    = f.label t('activerecord.attributes.order_state.time_in_minutes'), class: "form-label required", style: "color: white"
+    = f.number_field :time_in_minutes, class: "form-control"
+
+  .row 
+    .offset-3.col-3 
+      = link_to t('application.back'), order_states_path, class: "btn btn-secondary btn-block"
+    .col-3  
+      = button_tag t('application.save'), class: "btn btn-success btn-block", 'data-disable-with': t('application.saving')

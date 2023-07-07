@@ -1,0 +1,24 @@
+%div.page.header.d-flex.align-items-center.justify-content-between.px-4.shadow{ :style => "height: 10vh; background-color: #2C2D2F;"  }
+  %a.navbar-brand{href: "/"}
+    %h2.text-light.mb-0
+      =t('activerecord.modules.dashboard.management')
+  %div
+    = button_to  t('application.log_out'), logout_path, method: :delete, class: "btn btn-success"
+%div.container-fluid{ :style => "height: 90vh; background-color: #202124;" }
+  .div.h-100.row.justify-content-start
+    .div.col-2.p-0.pt-2.bg-light.h-100.shadow
+      %ul.nav.nav-pills.nav-fill.flex-column
+        %li.nav-item.mt-2
+          = link_to t('activerecord.modules.users.first_upper_others'), users_path, class: 'nav-link rounded-0', style: 'color: #e35919'
+        %li.nav-item.mt-2
+          = link_to t('activerecord.modules.dishes.first_upper_others'), dishes_path, class: 'nav-link rounded-0', style: 'color: #e35919'
+        %li.nav-item.mt-2
+          = link_to t('activerecord.modules.clients.first_upper_others'), clients_path, class: 'nav-link rounded-0', style: 'color: #e35919'
+        %li.nav-item.mt-2
+          = link_to t('activerecord.modules.order_states.first_upper_others'), order_states_path, class: 'nav-link rounded-0 active', style: 'color: white; background-color: #e35919;'
+        %li.nav-item.mt-2
+          = link_to t('activerecord.modules.orders.first_upper_others'), orders_path, class: 'nav-link rounded-0', style: 'color: #e35919'
+    .div.col-10.p-4
+      %p{:style => "color: green"}= notice
+      = render "form", order_state: @order_state
+

@@ -1,0 +1,41 @@
+%nav.page.header.d-flex.align-items-center.justify-content-between.px-4.shadow.navbar.navbar-expand-lg{ :style => "height: 10vh; background-color: #2C2D2F;"  }
+  %a.navbar-brand{href: "/"}
+    %h2.text-light.mb-0
+      =t('activerecord.modules.dashboard.management')
+  %div
+    = button_to  t('application.log_out'), logout_path, method: :delete, class: "btn btn-success"
+%div.container-fluid{ :style => "height: 90vh; background-color: #202124;" }
+  .div.h-100.row.justify-content-start
+    .div.col-2.p-0.pt-2.bg-light.h-100.shadow
+      %ul.nav.nav-pills.nav-fill.flex-column
+        %li.nav-item.mt-2
+          = link_to t('activerecord.modules.users.first_upper_others'), users_path, class: 'nav-link rounded-0 active', style: 'color: white; background-color: #e35919;'
+        %li.nav-item.mt-2
+          = link_to t('activerecord.modules.dishes.first_upper_others'), dishes_path, class: 'nav-link rounded-0', style: 'color: #e35919'
+        %li.nav-item.mt-2
+          = link_to t('activerecord.modules.clients.first_upper_others'), clients_path, class: 'nav-link rounded-0', style: 'color: #e35919'
+        %li.nav-item.mt-2
+          = link_to t('activerecord.modules.order_states.first_upper_others'), order_states_path, class: 'nav-link rounded-0', style: 'color: #e35919'
+        %li.nav-item.mt-2
+          = link_to t('activerecord.modules.orders.first_upper_others'), orders_path, class: 'nav-link rounded-0', style: 'color: #e35919'
+    .div.col-10.p-5
+      = form_tag users_path, method: :get, class: "navbar-form navbar-right", role: "search" do
+        %div.d-flex.flex-row.mb-4
+          = text_field_tag :search, params[:search], class: "form-control mr-2", style: "width: 200px; margin-left: 760px;"
+          = submit_tag t('application.search'), name: nil, class: "btn btn-secondary "
+      %p{:style => "color: green"}= notice
+      %table.table.table-striped.table-hover.shadow.bg-white{style: "border-radius: 10px;"}
+        %thread
+          %tr
+            %th= t('activerecord.attributes.user.username')
+            %th= t('activerecord.attributes.user.usertype')
+            %th
+            %th
+        %tbody
+          - @users.each do |user|
+            %tr
+              %td{:onclick => "window.location='users/#{user.id}';"}= user.username
+              %td{:onclick => "window.location='users/#{user.id}';"}= t("activerecord.attributes.user.usertypes.#{user.usertype}")
+              %td= link_to t('application.edit'),  edit_user_path(user), class: "btn btn-success"
+              %td= button_to t('application.delete'), "/users/#{user.id}", method: :delete, class: "btn btn-danger", data: {confirm: t('application.want_to_delete', model: t('activerecord.modules.users.one'))}
+      = link_to t('application.new', model: t('activerecord.modules.users.one')), new_user_path, class: "btn", style: 'background-color: #00684e; color: white;'

@@ -1,0 +1,33 @@
+= form_for @order, validate: true do |f|
+  - if  @order.errors.any?
+    %div{:style => 'color: red'}
+      %h2
+        = t('application.can_not_be_saved', model: t('activerecord.modules.orders.one'))
+        - if @order.errors.count == 1 
+          = "#{@order.errors.count} #{t('application.error')}"
+        - else 
+          = "#{@order.errors.count} #{t('application.errors')}"
+      %ul
+        -   @order.errors.each do |error|
+          %li= error.full_message
+  .form-group.ml-4.mr-4
+    = f.label t('activerecord.attributes.order.total'), class: "form-label required", style: "color: white"
+    = f.number_field :total, class: "form-control"
+  .form-group.ml-4.mr-4
+    = f.label t('activerecord.attributes.order.subtotal'), class: "form-label required", style: "color: white"
+    = f.number_field :subtotal, class: "form-control"
+  .form-group.ml-4.mr-4
+    = f.label t('activerecord.attributes.order.order_state_title'), class: "form-label required", style: "color: white"
+    = f.select(:order_state_id, options_for_select(@order_states, @order.order_state),
+                    {prompt: "Seleccione"}, class:"form-control")
+  .form-group.ml-4.mr-4
+    = f.label t('activerecord.attributes.order.client'), class: "form-label required", style: "color: white"
+    = f.select(:client_id, options_for_select(@clients, @order.client),
+                    {prompt: "Seleccione"}, class:"form-control")
+  
+
+  .row 
+    .offset-3.col-3 
+      = link_to t('application.back'), orders_path, class: "btn btn-secondary btn-block"
+    .col-3  
+      = button_tag t('application.save'), class: "btn btn-success btn-block", 'data-disable-with': t('application.saving')

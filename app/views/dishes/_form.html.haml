@@ -1,0 +1,40 @@
+= form_for @dish, validate: true do |f|
+  - if  @dish.errors.any?
+    %div{:style => 'color: red'}
+      %h2
+        = t('application.can_not_be_saved', model: t('activerecord.modules.dishes.one'))
+        - if @dish.errors.count == 1 
+          = "#{@dish.errors.count} #{t('application.error')}"
+        - else 
+          = "#{@dish.errors.count} #{t('application.errors')}"
+      %ul
+        -   @dish.errors.each do |error|
+          %li= error.full_message
+  .form-group.ml-4.mr-4
+    = f.label t('activerecord.attributes.dish.name'), class: "form-label required", style: "color: white"
+    = f.text_field :name, autofocus: true, class: "form-control"
+  .form-group.ml-4.mr-4
+    = f.label t('activerecord.attributes.dish.description'), class: "form-label required", style: "color: white"
+    = f.text_area :description, class: "form-control tinymce"
+  .form-group.ml-4.mr-4
+    = f.label t('activerecord.attributes.dish.price'), class: "form-label required", style: "color: white"
+    = f.number_field :price, class: "form-control"
+  .form-group.ml-4.mr-4
+    = f.label t('activerecord.attributes.dish.photography'), class: "form-label required", style: "color: white"
+  .form-group.ml-4.mr-4
+    - if @dish.photography.attached?
+      = image_tag @dish.photography, style: 'height:100px; width:auto;' 
+      .form-group.ml-4.mr-4
+    = f.file_field :photography
+  .form-group.ml-4.mr-4
+    = f.label t('activerecord.attributes.dish.state_title'), class: "form-label required", style: "color: white"
+  .form-group.ml-4.mr-4.mt-0
+    = f.select :state, [[t('application.enabled', model: t('activerecord.modules.dishes.one')), true], [t('application.disabled', 
+    model: t('activerecord.modules.dishes.one')), false]]
+
+
+  .row 
+    .offset-3.col-3 
+      = link_to t('application.back'), dishes_path, class: "btn btn-secondary btn-block"
+    .col-3  
+      = button_tag t('application.save'), class: "btn btn-success btn-block", 'data-disable-with': t('application.saving')
